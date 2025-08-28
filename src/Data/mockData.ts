@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 import type { Feature } from "../Types";
 import type { Event } from "../Types";
 import type { Testimonial } from "../Types";
+=======
+import { Feature, Event, Testimonial } from "../Types"; // Capital T
+>>>>>>> daef4dd (setup project)
 
 export const features: Feature[] = [
   {

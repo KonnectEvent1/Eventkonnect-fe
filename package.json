@@ -11,6 +11,9 @@
     "prepare": "husky install",
     "lint:fix": "eslint . --fix",
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ce07c8f (setup project)
     "format": "prettier --write .",
     "type-check": "tsc --noEmit"
   },
@@ -26,6 +29,7 @@
     "react-hot-toast": "^2.6.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^6.30.1"
+<<<<<<< HEAD
 =======
     "format": "prettier --write ."
   },
@@ -35,6 +39,8 @@
     "react-dom": "^19.1.1",
     "tailwindcss": "^4.1.12"
 >>>>>>> eff70ab (setup project)
+=======
+>>>>>>> ce07c8f (setup project)
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
@@ -47,32 +53,47 @@
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.4.21",
 =======
     "@vitejs/plugin-react": "^5.0.0",
 >>>>>>> eff70ab (setup project)
+=======
+    "@vitejs/plugin-react": "^4.7.0",
+    "autoprefixer": "^10.4.21",
+>>>>>>> ce07c8f (setup project)
     "eslint": "^9.34.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
     "husky": "^8.0.3",
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ce07c8f (setup project)
     "jsdom": "^22.1.0",
     "lint-staged": "^16.1.5",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "tailwindcss": "^3.4.17",
+<<<<<<< HEAD
 =======
     "lint-staged": "^16.1.5",
     "prettier": "^3.6.2",
 >>>>>>> eff70ab (setup project)
+=======
+>>>>>>> ce07c8f (setup project)
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.1",
     "vite": "^7.1.2"
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> eff70ab (setup project)
+=======
+}
+>>>>>>> ce07c8f (setup project)

@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 import bridalShowerImg from "./image/bridal shower image.jpeg";
 import corporateImg from "./image/corporate.jpeg";
 import weddingImg from "./image/wedding image.jpeg";
@@ -73,6 +74,17 @@ const Events: React.FC = () => {
             </div>
           </div>
         ))}
+=======
+
+const Events: React.FC = () => {
+  return (
+    <section className="py-16 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <h3 className="text-3xl font-bold text-center text-gray-900 mb-12">
+          Upcoming Events
+        </h3>
+        {/* Events will be added here */}
+>>>>>>> daef4dd (setup project)
       </div>
     </section>
   );

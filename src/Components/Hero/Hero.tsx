@@ -1,8 +1,5 @@
+
 import React from "react";
-<<<<<<< HEAD
-<<<<<<< HEAD
-import eventBackImg from "../Events/image/event-back.jpeg"; // Correct path
-=======
 import { FaMobileAlt, FaStore, FaChartLine, FaQrcode } from "react-icons/fa"; // ✅ modern icons
 import eventBackImg from "../Events/image/event-back.jpeg";
 import bImg from "../Events/image/bimage.jpeg";
@@ -35,7 +32,6 @@ const features: Feature[] = [
     desc: "QR codes for fast and secure guest check-in.",
   },
 ];
->>>>>>> ce07c8f (setup project)
 
 const Hero: React.FC = () => {
   return (
@@ -97,22 +93,6 @@ const Hero: React.FC = () => {
             <p className="text-gray-600 text-sm">{desc}</p>
           </div>
         ))}
-<<<<<<< HEAD
-=======
-
-const Hero: React.FC = () => {
-  return (
-    <section className="bg-gradient-to-br from-green-50 to-green-100 py-20">
-      <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">
-          Connect, Create & Celebrate Events
-        </h2>
-        <p className="text-lg text-gray-700 mb-8">
-          Rwanda's premier event management platform
-        </p>
->>>>>>> daef4dd (setup project)
-=======
->>>>>>> ce07c8f (setup project)
       </div>
     </header>
   );

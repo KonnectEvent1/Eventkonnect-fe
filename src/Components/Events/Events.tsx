@@ -9,44 +9,39 @@ const events = [
   {
     id: 1,
     title: "Bridal Shower",
-    description:
-      "Celebrate love and friendship with a beautifully planned bridal shower.",
+    description: "Celebrate love and friendship beautifully.",
     image: bridalShowerImg,
   },
   {
     id: 2,
     title: "Birthday Party",
-    description:
-      "Make birthdays unforgettable with fun, laughter, and memories that last.",
+    description: "Make birthdays unforgettable with fun and memories.",
     image: happyBirtdayImg,
   },
   {
     id: 3,
     title: "Wedding",
-    description:
-      "Turn your dream wedding into reality with elegance and style.",
+    description: "Turn your dream wedding into reality with elegance.",
     image: weddingImg,
   },
   {
     id: 4,
     title: "Corporate Events",
-    description:
-      "Professional event planning for conferences, meetings, and launches.",
+    description: "Professional planning for meetings and conferences.",
     image: corporateImg,
   },
   {
     id: 5,
     title: "Other Celebrations",
-    description:
-      "From baby showers to anniversaries, we bring every celebration to life.",
+    description: "From baby showers to anniversaries, we bring events to life.",
     image: otherImg,
   },
 ];
 
 const Events: React.FC = () => {
   return (
-    <section className="bg-white py-20">
-      <div className="container mx-auto px-4 text-center mb-12">
+    <section className="bg-gray-50 py-24">
+      <div className="container mx-auto px-6 text-center mb-16">
         <h2 className="text-4xl font-extrabold text-gray-900 mb-4">
           Events We Organize
         </h2>
@@ -56,16 +51,16 @@ const Events: React.FC = () => {
         </p>
       </div>
 
-      <div className="container mx-auto px-4 grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="container mx-auto px-6 grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {events.map((event) => (
           <div
             key={event.id}
-            className="bg-green-50 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-transform transform hover:-translate-y-2"
+            className="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-transform transform hover:-translate-y-2"
           >
             <img
               src={event.image}
               alt={event.title}
-              className="w-full h-96 object-cover"
+              className="w-full h-64 object-cover"
             />
             <div className="p-6 text-left">
               <h3 className="text-xl font-bold text-gray-900 mb-2">

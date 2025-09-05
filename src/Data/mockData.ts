@@ -1,6 +1,10 @@
+
 import type { Feature } from "../Types";
 import type { Event } from "../Types";
 import type { Testimonial } from "../Types";
+
+import { Feature, Event, Testimonial } from "../Types"; // Capital T
+
 
 export const features: Feature[] = [
   {

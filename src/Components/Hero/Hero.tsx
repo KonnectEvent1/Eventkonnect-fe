@@ -1,4 +1,5 @@
 import React from "react";
+
 import eventBackImg from "../Events/image/event-back.jpeg"; // Correct path
 
 const Hero: React.FC = () => {
@@ -70,6 +71,19 @@ const Hero: React.FC = () => {
             <p className="text-gray-600 text-sm">{feature.desc}</p>
           </div>
         ))}
+
+
+const Hero: React.FC = () => {
+  return (
+    <section className="bg-gradient-to-br from-green-50 to-green-100 py-20">
+      <div className="container mx-auto px-4 text-center">
+        <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          Connect, Create & Celebrate Events
+        </h2>
+        <p className="text-lg text-gray-700 mb-8">
+          Rwanda's premier event management platform
+        </p>
+
       </div>
     </section>
   );

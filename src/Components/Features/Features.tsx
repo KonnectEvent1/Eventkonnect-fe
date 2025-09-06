@@ -43,7 +43,7 @@ const Features: React.FC = () => {
       desc: "Plan your event expenses with a detailed cost breakdown tool.",
     },
     {
-      icon: <FaQrcode className="text-green-600 text-4xl mb-4" />,
+      icon: <FaQrcode className="text-green-600 text-4xl mb-4 " />,
       title: "QR Check-In",
       desc: "Streamline guest check-in with QR code scanning system.",
     },
@@ -61,9 +61,9 @@ const Features: React.FC = () => {
           Why Choose <span className="text-green-600">EventKonnect?</span>
         </h2>
         <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-          EventKonnect simplifies and centralizes the event planning process in
-          Rwanda. From planning and payments to vendor collaboration, we’ve got
-          you covered.
+          EventKonnect simplifies and centralizes the event planning process .
+          From planning and payments to vendor collaboration, we’ve got you
+          covered.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -72,7 +72,9 @@ const Features: React.FC = () => {
               key={index}
               className="p-6 bg-gray-50 rounded-2xl shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-2 text-center"
             >
-              {feature.icon}
+              <div className="flex justify-center items-center">
+                {feature.icon}
+              </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">
                 {feature.title}
               </h3>

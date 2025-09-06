@@ -8,15 +8,6 @@ import {
 
 const Footer: React.FC = () => {
   return (
-<<<<<<< HEAD
-    <footer className="bg-gray-900 text-white py-12">
-      <div className="container mx-auto px-4 text-center">
-<<<<<<< HEAD
-        <p>&copy; 2025 EventKonnect. All rights reserved.</p>
-=======
-        <p>&copy; 2023 EventKonnect. All rights reserved.</p>
->>>>>>> daef4dd (setup project)
-=======
     <footer className="bg-gradient-to-br from-gray-900 via-gray-950 to-black text-gray-300">
       {/* Container */}
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16 grid gap-12 md:grid-cols-4">
@@ -125,7 +116,6 @@ const Footer: React.FC = () => {
         &copy; {new Date().getFullYear()}{" "}
         <span className="text-white font-semibold">EventKonnect</span>. All
         rights reserved.
->>>>>>> a4554a8 (fixed some errors)
       </div>
     </footer>
   );

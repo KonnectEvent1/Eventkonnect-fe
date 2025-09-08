@@ -6,6 +6,7 @@ interface ButtonProps {
   onClick?: () => void;
   className?: string;
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -14,11 +15,12 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   className = "",
   type = "button",
+  disabled = false,
 }) => {
   const baseClasses =
-    "px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105";
+    "px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 disabled:opacity-50 disabled:cursor-not-allowed";
 
-  const variantClasses = {
+  const variantClasses: Record<string, string> = {
     primary: "bg-green-700 text-white hover:bg-green-800",
     secondary:
       "bg-transparent text-green-700 border-2 border-green-700 hover:bg-green-100",
@@ -32,6 +34,7 @@ const Button: React.FC<ButtonProps> = ({
       type={type}
       className={`${baseClasses} ${variantClasses[variant]} ${className}`}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>

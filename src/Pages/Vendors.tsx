@@ -30,9 +30,6 @@ const Vendors: React.FC = () => {
 
   return (
     <div className="min-h-screen p-6 bg-gray-50">
-      <h1 className="text-3xl font-bold mb-6 text-center">
-        Vendor Marketplace
-      </h1>
       {loading ? (
         <p className="text-center">Loading vendors...</p>
       ) : (

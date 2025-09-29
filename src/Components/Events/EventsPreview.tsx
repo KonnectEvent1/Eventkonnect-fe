@@ -1,9 +1,9 @@
 import React from "react";
-import type { Event } from "../../Data/mockData"; // type-only import ✅
-import { events as sampleEvents } from "../../Data/mockData"; // dataset ✅
+import type { Event } from "../../Data/mockData"; // type-only import
+import { events as sampleEvents } from "../../Data/mockData";
 
 interface EventsPreviewProps {
-  events?: Event[]; // allow optional prop (fallback to sample data)
+  events?: Event[];
 }
 
 const EventsPreview: React.FC<EventsPreviewProps> = ({
@@ -35,8 +35,10 @@ const EventsPreview: React.FC<EventsPreviewProps> = ({
               <h3 className="text-xl font-bold text-gray-900 mb-2">
                 {event.title}
               </h3>
-              <p className="text-gray-600 mb-2">{event.date}</p>
-              <p className="text-gray-500 text-sm">{event.location}</p>
+              {event.date && <p className="text-gray-600 mb-2">{event.date}</p>}
+              {event.location && (
+                <p className="text-gray-500 text-sm">{event.location}</p>
+              )}
               <button className="mt-4 bg-green-600 text-white px-4 py-2 rounded-xl font-semibold shadow hover:bg-green-700 transition">
                 Join Now
               </button>

@@ -4,8 +4,9 @@ interface Event {
   id: number;
   title: string;
   date: string;
-  location: string;
+  location?: string; // Make location optional
   image: string;
+  description?: string; // Add other optional properties from mockData
 }
 
 interface EventTableProps {
@@ -34,7 +35,7 @@ const EventTable: React.FC<EventTableProps> = ({ events }) => {
             <tr key={event.id} className="hover:bg-gray-50">
               <td className="px-6 py-4">{event.title}</td>
               <td className="px-6 py-4">{event.date}</td>
-              <td className="px-6 py-4">{event.location}</td>
+              <td className="px-6 py-4">{event.location || "N/A"}</td>
             </tr>
           ))}
         </tbody>

@@ -1,15 +1,15 @@
-// src/Components/Dashboard/ChartSection.tsx
 import React from "react";
 
 interface Event {
   id: number;
   title: string;
   date: string;
-  location: string;
+  location?: string;
   image: string;
-  attendees: number;
-  ticketsSold: number;
-  revenue: number;
+  attendees?: number; // Make optional
+  ticketsSold?: number; // Make optional
+  revenue?: number; // Make optional
+  description?: string;
 }
 
 interface ChartSectionProps {
@@ -17,28 +17,45 @@ interface ChartSectionProps {
 }
 
 const ChartSection: React.FC<ChartSectionProps> = ({ events }) => {
-  // Calculate totals from events
-  const totalRevenue = events.reduce((sum, event) => sum + event.revenue, 0);
+  // Filter events that have revenue data for charts
+  const eventsWithRevenue = events.filter(
+    (event) => event.revenue && event.revenue > 0,
+  );
+  const eventsWithAttendance = events.filter(
+    (event) => event.attendees && event.ticketsSold,
+  );
+
+  // Calculate totals from events with safe defaults
+  const totalRevenue = events.reduce(
+    (sum, event) => sum + (event.revenue || 0),
+    0,
+  );
   const totalAttendees = events.reduce(
-    (sum, event) => sum + event.attendees,
+    (sum, event) => sum + (event.attendees || 0),
     0,
   );
   const totalTicketsSold = events.reduce(
-    (sum, event) => sum + event.ticketsSold,
+    (sum, event) => sum + (event.ticketsSold || 0),
     0,
   );
 
-  // Calculate chart data from events
-  const revenueData = events.map((event) => ({
+  // Calculate chart data from events with data
+  const revenueData = eventsWithRevenue.map((event) => ({
     name: event.title,
-    revenue: event.revenue,
+    revenue: event.revenue || 0,
   }));
 
-  const attendanceData = events.map((event) => ({
+  const attendanceData = eventsWithAttendance.map((event) => ({
     name: event.title,
-    attendees: event.attendees,
-    ticketsSold: event.ticketsSold,
+    attendees: event.attendees || 0,
+    ticketsSold: event.ticketsSold || 0,
   }));
+
+  // Prevent division by zero
+  const maxRevenue =
+    revenueData.length > 0 ? Math.max(...revenueData.map((e) => e.revenue)) : 1;
+  const overallAttendanceRate =
+    totalAttendees > 0 ? (totalTicketsSold / totalAttendees) * 100 : 0;
 
   return (
     <div className="bg-white rounded-xl shadow p-6">
@@ -59,42 +76,8 @@ const ChartSection: React.FC<ChartSectionProps> = ({ events }) => {
             Revenue by Event
           </h3>
           <div className="space-y-4">
-            {revenueData.map((event) => (
-              <div
-                key={event.name}
-                className="flex items-center justify-between"
-              >
-                <span className="text-sm font-medium text-gray-700 truncate max-w-[120px]">
-                  {event.name}
-                </span>
-                <div className="flex items-center gap-3">
-                  <div className="w-32 bg-gray-200 rounded-full h-2">
-                    <div
-                      className="bg-green-600 h-2 rounded-full"
-                      style={{
-                        width: `${(event.revenue / Math.max(...revenueData.map((e) => e.revenue))) * 100}%`,
-                      }}
-                    ></div>
-                  </div>
-                  <span className="text-sm font-semibold text-gray-800 min-w-[60px]">
-                    ${event.revenue.toLocaleString()}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Attendance Chart */}
-        <div className="bg-gray-50 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">
-            Attendance vs Capacity
-          </h3>
-          <div className="space-y-4">
-            {attendanceData.map((event) => {
-              const attendanceRate =
-                (event.ticketsSold / event.attendees) * 100;
-              return (
+            {revenueData.length > 0 ? (
+              revenueData.map((event) => (
                 <div
                   key={event.name}
                   className="flex items-center justify-between"
@@ -105,17 +88,65 @@ const ChartSection: React.FC<ChartSectionProps> = ({ events }) => {
                   <div className="flex items-center gap-3">
                     <div className="w-32 bg-gray-200 rounded-full h-2">
                       <div
-                        className="bg-blue-600 h-2 rounded-full"
-                        style={{ width: `${attendanceRate}%` }}
+                        className="bg-green-600 h-2 rounded-full"
+                        style={{
+                          width: `${(event.revenue / maxRevenue) * 100}%`,
+                        }}
                       ></div>
                     </div>
                     <span className="text-sm font-semibold text-gray-800 min-w-[60px]">
-                      {attendanceRate.toFixed(0)}%
+                      ${event.revenue.toLocaleString()}
                     </span>
                   </div>
                 </div>
-              );
-            })}
+              ))
+            ) : (
+              <p className="text-gray-500 text-center py-4">
+                No revenue data available
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* Attendance Chart */}
+        <div className="bg-gray-50 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">
+            Attendance vs Capacity
+          </h3>
+          <div className="space-y-4">
+            {attendanceData.length > 0 ? (
+              attendanceData.map((event) => {
+                const attendanceRate =
+                  event.attendees > 0
+                    ? (event.ticketsSold / event.attendees) * 100
+                    : 0;
+                return (
+                  <div
+                    key={event.name}
+                    className="flex items-center justify-between"
+                  >
+                    <span className="text-sm font-medium text-gray-700 truncate max-w-[120px]">
+                      {event.name}
+                    </span>
+                    <div className="flex items-center gap-3">
+                      <div className="w-32 bg-gray-200 rounded-full h-2">
+                        <div
+                          className="bg-blue-600 h-2 rounded-full"
+                          style={{ width: `${attendanceRate}%` }}
+                        ></div>
+                      </div>
+                      <span className="text-sm font-semibold text-gray-800 min-w-[60px]">
+                        {attendanceRate.toFixed(0)}%
+                      </span>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <p className="text-gray-500 text-center py-4">
+                No attendance data available
+              </p>
+            )}
           </div>
         </div>
       </div>
@@ -136,7 +167,7 @@ const ChartSection: React.FC<ChartSectionProps> = ({ events }) => {
         </div>
         <div className="text-center">
           <div className="text-2xl font-bold text-purple-600">
-            {((totalTicketsSold / totalAttendees) * 100).toFixed(1)}%
+            {overallAttendanceRate.toFixed(1)}%
           </div>
           <div className="text-sm text-gray-600">Overall Attendance Rate</div>
         </div>

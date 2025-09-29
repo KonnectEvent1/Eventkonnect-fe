@@ -80,18 +80,33 @@ const ProgressIcon = () => (
 );
 
 const Dashboard: React.FC = () => {
+  // Fix: Handle undefined revenue with default value
+  const totalPayments = events.reduce(
+    (sum, event) => sum + (event.revenue || 0),
+    0,
+  );
+
+  // Fix: Filter events with dates and handle undefined dates
+  const upcomingDeadlines = events.filter((event) => {
+    if (!event.date) return false; // Skip events without dates
+    return new Date(event.date) > new Date();
+  }).length;
+
   // Calculate metrics focused on vendors, payments, and planning
   const totalEvents = events.length;
   const totalVendors = 24; // Mock vendor count
-  const totalPayments = events.reduce((sum, event) => sum + event.revenue, 0);
   const averagePlanningProgress = 75; // Mock progress percentage
 
   // Vendor-related calculations
   const activeVendors = 18;
   const pendingPayments = 3;
-  const upcomingDeadlines = events.filter(
-    (event) => new Date(event.date) > new Date(),
-  ).length;
+
+  // Fix: Create events with guaranteed dates for child components
+  const eventsWithRequiredDates = events.map((event) => ({
+    ...event,
+    date: event.date || "TBD", // Provide default value for date
+    revenue: event.revenue || 0, // Provide default value for revenue
+  }));
 
   return (
     <DashboardLayout>
@@ -284,7 +299,8 @@ const Dashboard: React.FC = () => {
       </div>
 
       <div className="mb-8">
-        <ChartSection events={events} />
+        {/* Fix: Use events with guaranteed dates */}
+        <ChartSection events={eventsWithRequiredDates} />
       </div>
 
       <div className="bg-white rounded-xl shadow">
@@ -298,7 +314,8 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
         </div>
-        <EventTable events={events} />
+        {/* Fix: Use events with guaranteed dates */}
+        <EventTable events={eventsWithRequiredDates} />
       </div>
     </DashboardLayout>
   );

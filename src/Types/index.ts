@@ -53,7 +53,4 @@ export interface ChartSectionProps {
   events: Event[];
 }
 
-
-export type QuickActionsProps = Record<string, never>; 
-
-
+export type QuickActionsProps = Record<string, never>;

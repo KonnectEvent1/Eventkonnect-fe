@@ -1,4 +1,6 @@
 // src/Data/mockData.ts
+
+// Define the Event type
 export interface Event {
   id: number;
   title: string;
@@ -12,6 +14,7 @@ export interface Event {
   description?: string;
 }
 
+// Sample events data
 export const events: Event[] = [
   {
     id: 1,

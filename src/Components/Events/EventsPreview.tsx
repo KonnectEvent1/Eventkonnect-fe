@@ -1,7 +1,14 @@
 import React from "react";
-import { events } from "../../Data"; // adjust path to your Data folder
+import type { Event } from "../../Data/mockData"; // type-only import ✅
+import { events as sampleEvents } from "../../Data/mockData"; // dataset ✅
 
-const EventsPreview: React.FC = () => {
+interface EventsPreviewProps {
+  events?: Event[]; // allow optional prop (fallback to sample data)
+}
+
+const EventsPreview: React.FC<EventsPreviewProps> = ({
+  events = sampleEvents,
+}) => {
   return (
     <section className="bg-white py-20">
       <div className="container mx-auto px-4 text-center mb-12">
@@ -14,7 +21,7 @@ const EventsPreview: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-4 grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {events.map((event) => (
+        {events.map((event: Event) => (
           <div
             key={event.id}
             className="bg-green-50 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-transform transform hover:-translate-y-2"

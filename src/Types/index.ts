@@ -53,10 +53,4 @@ export interface ChartSectionProps {
   events: Event[];
 }
 
-// Remove the empty interface and use type alias instead if needed
-export type QuickActionsProps = Record<string, never>; // This means no properties allowed
-
-// Alternative options:
-// export type QuickActionsProps = object; // If you want to allow any object
-// export type QuickActionsProps = unknown; // If you want to allow any value
-// Or simply remove it if not used
+export type QuickActionsProps = Record<string, never>;

@@ -1,42 +1,5 @@
 import React from "react";
-import bridalShowerImg from "./image/bridal shower image.jpeg";
-import corporateImg from "./image/corporate.jpeg";
-import weddingImg from "./image/wedding image.jpeg";
-import happyBirtdayImg from "./image/HappyBirthday image.jpeg";
-import otherImg from "./image/other image.jpeg";
-
-const events = [
-  {
-    id: 1,
-    title: "Bridal Shower",
-    description: "Celebrate love and friendship beautifully.",
-    image: bridalShowerImg,
-  },
-  {
-    id: 2,
-    title: "Birthday Party",
-    description: "Make birthdays unforgettable with fun and memories.",
-    image: happyBirtdayImg,
-  },
-  {
-    id: 3,
-    title: "Wedding",
-    description: "Turn your dream wedding into reality with elegance.",
-    image: weddingImg,
-  },
-  {
-    id: 4,
-    title: "Corporate Events",
-    description: "Professional planning for meetings and conferences.",
-    image: corporateImg,
-  },
-  {
-    id: 5,
-    title: "Other Celebrations",
-    description: "From baby showers to anniversaries, we bring events to life.",
-    image: otherImg,
-  },
-];
+import { events } from "../../Data/mockData";
 
 const Events: React.FC = () => {
   return (
@@ -46,7 +9,7 @@ const Events: React.FC = () => {
           Events We Organize
         </h2>
         <p className="text-gray-600 text-lg">
-          From intimate gatherings to grand celebrations — we’ve got you
+          From intimate gatherings to grand celebrations — we've got you
           covered.
         </p>
       </div>

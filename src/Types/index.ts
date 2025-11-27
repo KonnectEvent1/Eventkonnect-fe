@@ -6,17 +6,48 @@ export interface Feature {
   icon: string;
 }
 
+export interface User {
+  id: string;
+  username: string;
+  email: string;
+  phone?: string;
+  avatar?: string;
+  role: string;
+  isVerified: boolean;
+  createdAt: string;
+  organisationName?: string;
+  companyName?: string;
+  serviceArea?: string;
+}
+
 export interface Event {
-  id: number;
+  id: string;
   title: string;
-  date: string;
-  location: string;
-  image: string;
-  attendees: number;
-  ticketsSold: number;
-  revenue: number;
-  price?: number;
   description?: string;
+  location: string;
+  date: string;
+  budget: number;
+  status: "active" | "cancelled" | "postponed" | "completed";
+  organizerId: string;
+  organizer?: User;
+  images?: Array<{ url: string; publicId: string }>;
+  attendees?: EventAttendee[];
+  createdAt: string;
+  updatedAt?: string;
+  // Legacy fields for dashboard compatibility
+  image?: string;
+  ticketsSold?: number;
+  revenue?: number;
+  price?: number;
+}
+
+export interface EventAttendee {
+  id: string;
+  eventId: string;
+  userId: string;
+  status: "PENDING" | "CONFIRMED" | "CANCELLED" | "CHECKED_IN";
+  user?: User;
+  createdAt: string;
 }
 
 export interface Testimonial {
@@ -35,6 +66,12 @@ export interface Vendor {
   rating?: number;
   priceRange?: string;
   image?: string;
+}
+
+export interface ApiResponse<T> {
+  message: string;
+  data: T;
+  error?: string;
 }
 
 // For dashboard components

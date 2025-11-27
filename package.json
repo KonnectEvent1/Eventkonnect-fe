@@ -1,4 +1,3 @@
-
 {
   "name": "eventkonnect-fe",
   "private": true,
@@ -9,7 +8,6 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prepare": "husky install",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "type-check": "tsc --noEmit"

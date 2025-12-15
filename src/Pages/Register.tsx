@@ -19,6 +19,7 @@ const Register: React.FC = () => {
   });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  // const base_url =
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -69,25 +70,29 @@ const Register: React.FC = () => {
       }
 
       toast.success(
-        "Registration successful! Please check your email to verify your account."
+        "Registration successful! Please check your email to verify your account.",
       );
       setTimeout(() => navigate("/login"), 2000);
     } catch (err) {
-      const error = err as { error?: string; message?: string; details?: any };
-      
+      const error = err as {
+        error?: string;
+        message?: string;
+        details?: string;
+      };
+
       console.log("=== ERROR DEBUG ===");
       console.log("Full error object:", JSON.stringify(err, null, 2));
       console.log("Error type:", typeof err);
       console.log("Error.error:", error?.error);
       console.log("Error.message:", error?.message);
       console.log("Error.details:", error?.details);
-      
+
       // Show more specific error message
-      const errorMessage = 
-        error?.error || 
-        error?.message || 
+      const errorMessage =
+        error?.error ||
+        error?.message ||
         "Registration failed. Please check all fields and try again.";
-      
+
       toast.error(errorMessage);
     } finally {
       setLoading(false);

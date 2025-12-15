@@ -13,7 +13,7 @@ interface RegisterData {
 
 class AuthService {
   async registerOrganizer(data: RegisterData) {
-    const response = await api.post("/auth/signup/organiser", data);
+    const response = await api.post(`/auth/signup/organiser`, data);
     return response;
   }
 
@@ -36,37 +36,40 @@ class AuthService {
 
       console.log("=== LOGIN RESPONSE ===");
       console.log("Full response:", response);
-      
+
       // Your backend returns: { message: "...", data: "JWT_TOKEN_STRING", error: "" }
       let accessToken = null;
       let userData = null;
 
       // Extract token - it's directly in response.data as a string
-      if (typeof response?.data === 'string' && response.data.startsWith('eyJ')) {
+      if (
+        typeof response?.data === "string" &&
+        response.data.startsWith("eyJ")
+      ) {
         // JWT token found
         accessToken = response.data;
         console.log("✅ Found JWT token in response.data");
-        
+
         // Decode JWT to get user info
         try {
-          const base64Url = accessToken.split('.')[1];
-          const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+          const base64Url = accessToken.split(".")[1];
+          const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
           const jsonPayload = decodeURIComponent(
             atob(base64)
-              .split('')
-              .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-              .join('')
+              .split("")
+              .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+              .join(""),
           );
           const decoded = JSON.parse(jsonPayload);
-          
+
           // Create user object from JWT payload
           userData = {
             id: decoded.sub,
             email: decoded.email,
             role: decoded.role,
-            username: decoded.email.split('@')[0], // Use email prefix as username
+            username: decoded.email.split("@")[0], // Use email prefix as username
           };
-          
+
           console.log("✅ Decoded user from JWT:", userData);
         } catch (decodeError) {
           console.error("Failed to decode JWT:", decodeError);
